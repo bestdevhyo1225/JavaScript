@@ -37,6 +37,7 @@ function outter() {
         alert(title);
     }
 }
+// 외부함수가 소멸되어도 내부함수는 외부함수의 지역변수에 접근할 수 있다.
 // 이게 가능하다니..
 var inner = outter();
 inner();
