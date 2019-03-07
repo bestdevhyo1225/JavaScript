@@ -15,7 +15,7 @@ var person1 = {
     'introduce' : function() {
         return 'My name is ' + this.name;
     }
-};
+}
 document.write(person1.introduce());
 
 ///////////////////////////////////////////////////

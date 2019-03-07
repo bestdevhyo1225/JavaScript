@@ -50,6 +50,6 @@ var p1 = new Programmer('hyoseok');
 document.write(p1.introduce() + '<br />');
 document.write(p1.coding() + '<br />');
 
-var p2 = new Programmer('hyeo');
+var p2 = new Designer('hyeo');
 document.write(p2.introduce() + '<br />');
 document.write(p2.design() + '<br />');
