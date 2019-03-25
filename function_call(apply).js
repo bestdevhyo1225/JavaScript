@@ -49,3 +49,40 @@ alert(sum.apply(o2));   // 185
 // var o2 = {v1:10, v2:50, v3:100, v4:25, sum:sum};
 // alert(o1.sum());
 // alert(o2.sum());
+
+// call -> this를 특정값으로 지정할 수 있다.
+const bruce = { name: "Bruce" };
+const madeline = { name: "Madeline" };
+
+// 이 함수는 어떤 객체에도 연결되지 않았지만 this를 사용합니다.
+function greet() {
+    return `Hello, I'm ${this.name}!`;
+}
+
+// this로 사용할 객체를 넘기면 해당 함수가 주어진 객체의 메서드인 것처럼 사용할 수 있다.
+greet();                // Hello, I'm undefined! -> this는 어디에도 묶이지 않았습니다.
+greet.call(bruce);      // Hello, I'm bruce!     -> this는 bruce 입니다.
+greet.call(madeline);   // Hello, I'm Madeline!  -> thissms madeline 입니다.
+
+function update(birthYear, occupation) {
+    this.birthYear = birthYear;
+    this.occupation = occupation;
+}
+
+// call의 첫 번째 매개변수는 this로 사용할 값이고,
+// 매개변수가 더 있으면 그 매개변수는 호출하는 함수로 전달 된다.
+update.call(bruce, 1949, 'singer');
+// bruce는 이제 { name: "Bruce", birthYear: 1949, occupation: "singer" } 입니다.
+update.call(madeline, 1942,  'actress');
+// bruce는 이제 { name: "madeline", birthYear: 1942, occupation: "actress" } 입니다.
+
+// call 과 apply 는 같다.
+// 다만, apply는 매개변수를 배열로 받는다.
+// call 은 매개변수를 직접 받는다.
+update.apply(bruce, [1955, 'actor']);      // 매개변수를 배열로 받음
+update.apply(madeline, [1918, 'writer']);  // 매개변수를 배열로 받음
+
+const arr = [2, 3, -5, 15, 7];
+// this의 값에 null을 쓴 이유 ? Math.min 과 Math.max 가 this 와 관계없이 동작하기 때문에..
+Math.min.apply(null, arr);  // -5
+Math.max.apply(null, arr);  // 15
